@@ -55,20 +55,20 @@ export const Projects = () => {
 
   const projects = [
     {
-      title: "Interactive 3D Gallery",
-      description: "An immersive 3D art gallery built with Three.js featuring dynamic lighting, particle effects, and smooth camera transitions.",
+      title: "Health Monitor System",
+      description:"This project is a Health Monitor System that continuously tracks key vital signs like heart rate, temperature, and oxygen level. It uses sensors to collect real-time data and displays it on a user-friendly interface. The system helps in early detection of health abnormalities and is ideal for personal or remote patient monitoring.",
       image: "/api/placeholder/400/300",
-      tags: ["Three.js", "GSAP", "WebGL", "React"],
+      tags: ["React.js", "Python", "Fastapi", "Machine Learning"],
       liveUrl: "#",
       githubUrl: "#"
     },
     {
-      title: "AI-Powered Dashboard",
-      description: "A real-time analytics dashboard with machine learning insights, featuring beautiful data visualizations and interactive charts.",
+      title: "AI-Powered Sentiment Analysis",
+      description: "This project classifies the sentiment of user reviews into positive, negative, or neutral categories using a machine learning model trained on labeled data. It relies on feature extraction techniques and manual preprocessing rather than advanced NLP libraries.",
       image: "/api/placeholder/400/300",
-      tags: ["React", "D3.js", "TypeScript", "Node.js"],
+      tags: ["React", "Python", "MongoDB", "Fastapi"],
       liveUrl: "#",
-      githubUrl: "#"
+      githubUrl: "https://github.com/riteshsolke2004/opinion-pulse-monitor.git"
     },
     {
       title: "Cyberpunk Game Interface",

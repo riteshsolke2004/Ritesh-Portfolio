@@ -101,9 +101,11 @@ export const About = () => {
         
         <div ref={contentRef} className="max-w-3xl mx-auto text-center mb-16">
           <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-            I'm a passionate creative developer who bridges the gap between design and technology. 
-            With expertise in 3D graphics, interactive animations, and modern web development, 
-            I create digital experiences that captivate and inspire.
+            Hi, I'm Ritesh Solke, a passionate and curious computer engineering student with a strong interest in web development, machine learning, and AI-based solutions. 
+            I enjoy building interactive and dynamic applications that solve real-world problems — from 3D portfolio websites using Three.js & GSAP to predictive models like sentiment analysis and health monitoring systems.
+            Currently exploring modern technologies like React, FastAPI, MongoDB, and Docker, I love working on innovative projects and constantly learning new skills. Whether it's a creative front-end design or a smart machine learning backend, I strive to make every line of code meaningful and impactful.Let’s build something amazing together!
+
+
           </p>
           
           <p className="text-lg text-muted-foreground leading-relaxed">

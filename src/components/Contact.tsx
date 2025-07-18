@@ -105,20 +105,20 @@ export const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "hello@portfolio.dev",
-      href: "mailto:hello@portfolio.dev"
+      value: "riteshsolke12@gmail.com",
+      href: "mailto:riteshsolke12@gmail.com"
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
+      value: "+91 8799993086",
+      href: "tel: +91 8799993086"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
-      href: "#"
+      value: "Pune, india",
+      href: "Pune, India"
     }
   ];
 
