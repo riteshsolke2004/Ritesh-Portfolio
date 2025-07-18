@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -80,30 +79,29 @@ export const Skills = () => {
       title: "Frontend Development",
       icon: "💻",
       skills: [
-        { name: "React/Next.js", level: 95 },
-        { name: "TypeScript", level: 90 },
-        { name: "Three.js/WebGL", level: 85 },
-        { name: "CSS3/Tailwind", level: 92 }
+        { name: "React/Next.js", symbol: "⚛️" },
+        { name: "TypeScript", symbol: "🔷" },
+        { name: "Three.js/WebGL", symbol: "🎮" },
+        { name: "CSS3/Tailwind", symbol: "🎨" }
       ]
     },
     {
       title: "3D & Animation",
       icon: "🎬",
       skills: [
-        { name: "Three.js", level: 88 },
-        { name: "GSAP", level: 85 },
-        { name: "Blender", level: 75 },
-        { name: "WebGL", level: 80 }
+        { name: "Three.js", symbol: "🌐" },
+        { name: "GSAP", symbol: "✨" },
+        { name: "Blender", symbol: "🔮" },
+        { name: "WebGL", symbol: "🚀" }
       ]
     },
     {
       title: "Backend & Tools",
       icon: "⚙️",
       skills: [
-        { name: "Node.js", level: 87 },
-        { name: "Python", level: 82 },
-        { name: "Docker", level: 78 },
-        { name: "AWS/Cloud", level: 80 }
+        { name: "Python", symbol: "🐍" },
+        { name: "FastAPI", symbol: "⚡" },
+        { name: "Flask", symbol: "🌶️" }
       ]
     }
   ];
@@ -133,31 +131,18 @@ export const Skills = () => {
                 </h3>
               </div>
               
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <div 
                     key={skillIndex}
-                    ref={el => {
-                      if (el) progressRefs.current[categoryIndex * 4 + skillIndex] = el;
-                    }}
-                    className="space-y-2"
+                    className="flex items-center justify-between p-4 rounded-lg bg-background/20 border border-border/20 hover:border-primary/30 transition-all duration-300"
                   >
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-foreground">
-                        {skill.name}
-                      </span>
-                      <span className="text-sm text-muted-foreground">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    
-                    <div className="relative h-2 bg-muted rounded-full overflow-hidden">
-                      <div 
-                        className="absolute top-0 left-0 h-full bg-gradient-primary rounded-full shadow-glow-primary"
-                        data-progress={skill.level}
-                        style={{ width: '0%' }}
-                      />
-                    </div>
+                    <span className="text-sm font-medium text-foreground">
+                      {skill.name}
+                    </span>
+                    <span className="text-2xl">
+                      {skill.symbol}
+                    </span>
                   </div>
                 ))}
               </div>
