@@ -57,7 +57,7 @@ export const Projects = () => {
     {
       title: "Health Monitor System",
       description:"This project is a Health Monitor System that continuously tracks key vital signs like heart rate, temperature, and oxygen level. It uses sensors to collect real-time data and displays it on a user-friendly interface. The system helps in early detection of health abnormalities and is ideal for personal or remote patient monitoring.",
-      image: "/api/placeholder/400/300",
+      image: "/project-health-monitor.png",
       tags: ["React.js", "Python", "Fastapi", "Machine Learning"],
       liveUrl: "#",
       githubUrl: "#"
@@ -65,7 +65,7 @@ export const Projects = () => {
     {
       title: "AI-Powered Sentiment Analysis",
       description: "This project classifies the sentiment of user reviews into positive, negative, or neutral categories using a machine learning model trained on labeled data. It relies on feature extraction techniques and manual preprocessing rather than advanced NLP libraries.",
-      image: "/api/placeholder/400/300",
+      image: "/project-sentiment-analysis.png",
       tags: ["React", "Python", "MongoDB", "Fastapi"],
       liveUrl: "#",
       githubUrl: "https://github.com/riteshsolke2004/opinion-pulse-monitor.git"
@@ -73,7 +73,7 @@ export const Projects = () => {
     {
       title: "Cyberpunk Game Interface",
       description: "A futuristic game UI with neon aesthetics, animated elements, and immersive sound design for enhanced user experience.",
-      image: "/api/placeholder/400/300",
+      image: "/project-cyberpunk-game.png",
       tags: ["Vue.js", "CSS3", "WebAudio", "GSAP"],
       liveUrl: "#",
       githubUrl: "#"
@@ -96,11 +96,13 @@ export const Projects = () => {
               key={index}
               className="glass-card overflow-hidden hover-glow transition-all duration-500 hover:scale-105 group"
             >
-              <div className="relative overflow-hidden">
-                <div className="w-full h-48 bg-gradient-primary opacity-20 flex items-center justify-center">
-                  <span className="text-6xl group-hover:animate-pulse">🎨</span>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative overflow-hidden h-48">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
               </div>
               
               <div className="p-6">
