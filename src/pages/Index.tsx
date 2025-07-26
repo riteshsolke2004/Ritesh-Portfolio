@@ -7,6 +7,7 @@ import { Skills } from '@/components/Skills';
 import { Contact } from '@/components/Contact';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
+import MagneticCursor from '@/components/MagneticCursor';
 
 const Index = () => {
   return (
@@ -14,6 +15,9 @@ const Index = () => {
       <div className="relative min-h-screen bg-background">
         {/* Three.js Background Scene */}
         <ThreeScene />
+        
+        {/* Magnetic Cursor */}
+        <MagneticCursor />
         
         {/* Navigation */}
         <Navigation />
@@ -36,32 +40,32 @@ const Index = () => {
                 </p>
                 <div className="flex justify-center gap-6 mb-8">
                     <a 
-                        href="https://github.com" 
+                        href="https://github.com/riteshsolke2004" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="p-3 rounded-full border border-border/50 hover:border-primary hover:bg-primary/10 transition-all duration-300 hover-glow"
+                        className="p-3 rounded-full border border-border/50 hover:border-primary hover:bg-primary/10 transition-all duration-300 hover-glow magnetic"
                     >
                         <Github className="w-6 h-6" />
                     </a>
                     <a 
-                        href="https://linkedin.com" 
+                        href="https://www.linkedin.com/in/riteshsolke/" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="p-3 rounded-full border border-border/50 hover:border-primary hover:bg-primary/10 transition-all duration-300 hover-glow"
+                        className="p-3 rounded-full border border-border/50 hover:border-primary hover:bg-primary/10 transition-all duration-300 hover-glow magnetic"
                     >
                         <Linkedin className="w-6 h-6" />
                     </a>
                     <a 
-                        href="https://instagram.com" 
+                        href="https://www.instagram.com/_.ritesh._18/" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="p-3 rounded-full border border-border/50 hover:border-primary hover:bg-primary/10 transition-all duration-300 hover-glow"
+                        className="p-3 rounded-full border border-border/50 hover:border-primary hover:bg-primary/10 transition-all duration-300 hover-glow magnetic"
                     >
                         <Instagram className="w-6 h-6" />
                     </a>
                     <a 
-                        href="mailto:hello@example.com"
-                        className="p-3 rounded-full border border-border/50 hover:border-primary hover:bg-primary/10 transition-all duration-300 hover-glow"
+                        href="mailto:riteshsolke12@gmail.com"
+                        className="p-3 rounded-full border border-border/50 hover:border-primary hover:bg-primary/10 transition-all duration-300 hover-glow magnetic"
                     >
                         <Mail className="w-6 h-6" />
                     </a>
@@ -73,7 +77,7 @@ const Index = () => {
                     <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
                 </div>
                 <p className="text-muted-foreground text-sm">
-                    © 2024 Ritesh Solke. All rights reserved.
+                    © 2025 Ritesh Solke. All rights reserved.
                 </p>
             </div>
         </footer>

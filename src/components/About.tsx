@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CheckCircle } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,13 +10,13 @@ export const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const listItemsRef = useRef<(HTMLLIElement | null)[]>([]);
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    // Title animation
     gsap.fromTo(titleRef.current,
       { y: 50, opacity: 0 },
       {
@@ -26,67 +27,61 @@ export const About = () => {
         scrollTrigger: {
           trigger: section,
           start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
         }
       }
     );
 
-    // Content animation
-    gsap.fromTo(contentRef.current,
-      { y: 30, opacity: 0 },
+    gsap.fromTo(imageRef.current,
+      { x: -50, opacity: 0 },
       {
-        y: 0,
+        x: 0,
         opacity: 1,
-        duration: 0.8,
-        delay: 0.2,
+        duration: 1.2,
         ease: "power3.out",
         scrollTrigger: {
           trigger: section,
           start: "top 70%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
         }
       }
     );
 
-    // Cards stagger animation
-    gsap.fromTo(cardsRef.current?.children || [],
-      { y: 50, opacity: 0, scale: 0.9 },
+    gsap.fromTo(contentRef.current,
+      { x: 50, opacity: 0 },
       {
-        y: 0,
+        x: 0,
         opacity: 1,
-        scale: 1,
-        duration: 0.6,
+        duration: 1.2,
         ease: "power3.out",
-        stagger: 0.2,
         scrollTrigger: {
-          trigger: cardsRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
+          trigger: section,
+          start: "top 70%",
         }
       }
     );
+    
+    listItemsRef.current.forEach((item, index) => {
+      gsap.fromTo(item,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          delay: 0.5 + index * 0.2,
+          scrollTrigger: {
+            trigger: item,
+            start: "top 90%",
+          }
+        }
+      );
+    });
 
   }, []);
 
-  const experiences = [
-    {
-      title: "Creative Development",
-      description: "Specialized in creating interactive web experiences using Three.js, WebGL, and modern frameworks.",
-      icon: "🎨"
-    },
-    {
-      title: "UI/UX Design",
-      description: "Designing intuitive and beautiful user interfaces with attention to detail and user experience.",
-      icon: "✨"
-    },
-    {
-      title: "Full-Stack Development",
-      description: "Building robust applications from concept to deployment using cutting-edge technologies.",
-      icon: "🚀"
-    }
+  const highlights = [
+    "Interactive Frontend Development with React & Three.js",
+    "Robust Backend Solutions with Python & FastAPI",
+    "AI-Powered Applications & Machine Learning Models"
   ];
 
   return (
@@ -99,46 +94,28 @@ export const About = () => {
           About Me
         </h2>
         
-        <div ref={contentRef} className="max-w-3xl mx-auto text-center mb-16">
-          <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-            Hi, I'm Ritesh Solke, a passionate and curious computer engineering student with a strong interest in web development, machine learning, and AI-based solutions. 
-            I enjoy building interactive and dynamic applications that solve real-world problems — from 3D portfolio websites using Three.js & GSAP to predictive models like sentiment analysis and health monitoring systems.
-            Currently exploring modern technologies like React, FastAPI, MongoDB, and Docker, I love working on innovative projects and constantly learning new skills. Whether it's a creative front-end design or a smart machine learning backend, I strive to make every line of code meaningful and impactful.Let’s build something amazing together!
-
-
-          </p>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div ref={imageRef} className="relative w-full h-96">
+            <img src="/ai-developer.png" alt="AI Developer" className="w-full h-full object-contain" />
+            <div className="absolute inset-0 bg-gradient-glow opacity-30 rounded-full" />
+          </div>
           
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            My journey began with a fascination for pushing the boundaries of what's possible on the web. 
-            Today, I specialize in creating immersive digital experiences that combine beautiful design 
-            with cutting-edge technology.
-          </p>
+          <div ref={contentRef}>
+            <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+              Hi, I'm Ritesh Solke, a passionate and curious computer engineering student with a strong interest in web development, machine learning, and AI-based solutions. 
+              I enjoy building interactive and dynamic applications that solve real-world problems.
+            </p>
+            
+            <ul className="space-y-4">
+              {highlights.map((text, index) => (
+                <li key={index} ref={el => listItemsRef.current[index] = el} className="flex items-start">
+                  <CheckCircle className="w-6 h-6 text-primary mr-4 mt-1" />
+                  <span className="text-lg text-foreground">{text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        
-        <div ref={cardsRef} className="grid md:grid-cols-3 gap-8">
-          {experiences.map((experience, index) => (
-            <Card 
-              key={index}
-              className="glass-card p-8 text-center hover-glow transition-all duration-300 hover:scale-105 group"
-            >
-              <div className="text-4xl mb-4 group-hover:animate-bounce">
-                {experience.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-4 text-primary">
-                {experience.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {experience.description}
-              </p>
-            </Card>
-          ))}
-        </div>
-      </div>
-      
-      {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 -left-32 w-64 h-64 bg-gradient-glow rounded-full opacity-10 animate-float" />
-        <div className="absolute bottom-1/4 -right-32 w-48 h-48 bg-gradient-secondary rounded-full opacity-10 animate-pulse-glow" />
       </div>
     </section>
   );

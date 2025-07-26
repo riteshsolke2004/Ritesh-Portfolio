@@ -60,7 +60,7 @@ export const Projects = () => {
       image: "/project-health-monitor.png",
       tags: ["React.js", "Python", "Fastapi", "Machine Learning"],
       liveUrl: "#",
-      githubUrl: "#"
+      githubUrl: "https://github.com/riteshsolke2004/Health-Monitor"
     },
     {
       title: "AI-Powered Sentiment Analysis",
@@ -68,16 +68,44 @@ export const Projects = () => {
       image: "/project-sentiment-analysis.png",
       tags: ["React", "Python", "MongoDB", "Fastapi"],
       liveUrl: "#",
-      githubUrl: "https://github.com/riteshsolke2004/opinion-pulse-monitor.git"
+      githubUrl: "https://github.com/riteshsolke2004/Sentiment-Analysis"
     },
     {
-      title: "Cyberpunk Game Interface",
-      description: "A futuristic game UI with neon aesthetics, animated elements, and immersive sound design for enhanced user experience.",
-      image: "/project-cyberpunk-game.png",
-      tags: ["Vue.js", "CSS3", "WebAudio", "GSAP"],
-      liveUrl: "#",
-      githubUrl: "#"
-    }
+    title: "Voice Assistant using Python",
+    description:
+      "A desktop voice assistant developed using Python libraries like speech recognition and pyttsx3. It can answer questions, open websites, search Google, and interact with the system using voice commands.",
+    image: "/project-voice-assistant.png",
+    tags: ["Python", "SpeechRecognition", "pyttsx3", "Desktop App"],
+    liveUrl: "https://your-voice-assistant-demo.com",
+    githubUrl: "https://github.com/riteshsolke2004/Voice-Assistant",
+  },
+     {
+    title: "E-Commerce Website for Mechanical Components",
+    description:
+      "An e-commerce platform for mechanical components, including product listings, filters, cart functionality, and admin panel. Designed for workshops and engineering firms to streamline parts purchasing.",
+    image: "/project-ecommerce-mech.png",
+    tags: ["HTML", "CSS", "JavaScript", "React.js", "MongoDB","FastApi"],
+    liveUrl: "https://your-mech-store.com",
+    githubUrl: "https://github.com/riteshsolke2004/ecommerce-mechanical.git",
+  },
+  {
+    title: "Medical Cost Prediction",
+    description:
+      "Predicts the medical insurance costs based on input features like age, BMI, smoking status, and region using linear regression techniques.",
+    image: "/project-medical-cost.png",
+    tags: ["Python", "Machine Learning", "Streamlit"],
+    liveUrl: "https://medical-cost-predictor.streamlit.app/",
+    githubUrl: "https://github.com/riteshsolke2004/medical-cost-prediction.git",
+  },
+  {
+    title: "Simple Linear Regression - Housing Price",
+    description:
+      "A simple linear regression project built using Google Colab and Streamlit to predict housing prices based on square footage.",
+    image: "/project-housing-price.png",
+    tags: ["Python", "Streamlit", "Colab", "Machine Learning"],
+    liveUrl: "https://linear-regression-housing.streamlit.app/",
+    githubUrl: "https://github.com/riteshsolke2004/housing-price-predictor.git",
+  }
   ];
 
   return (

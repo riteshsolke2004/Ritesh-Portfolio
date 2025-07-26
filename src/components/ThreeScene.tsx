@@ -11,6 +11,7 @@ export const ThreeScene = ({ className }: ThreeSceneProps) => {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const frameRef = useRef<number>();
   const mouseRef = useRef({ x: 0, y: 0 });
+  const techIconsRef = useRef<THREE.Group[]>([]);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -53,33 +54,25 @@ export const ThreeScene = ({ className }: ThreeSceneProps) => {
     pointLight2.position.set(5, -2, 2);
     scene.add(pointLight2);
 
-    // Create floating cube with glow
-    const geometry = new THREE.BoxGeometry(2, 2, 2);
-    const edges = new THREE.EdgesGeometry(geometry);
-    
-    // Main cube with transparent material
-    const material = new THREE.MeshPhongMaterial({
-      color: 0x00f0ff,
-      transparent: true,
-      opacity: 0.1,
-      shininess: 100
+    // Floating tech icons
+    const textureLoader = new THREE.TextureLoader();
+    const icons = ['/react.png', '/node.png', '/python.png', '/docker.png', '/kubernetes.png', '/aws.png'];
+    icons.forEach(iconUrl => {
+      const texture = textureLoader.load(iconUrl);
+      const material = new THREE.SpriteMaterial({ map: texture });
+      const sprite = new THREE.Sprite(material);
+      sprite.scale.set(0.5, 0.5, 1);
+      sprite.position.set(
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10
+      );
+      scene.add(sprite);
+      techIconsRef.current.push(sprite as any);
     });
-    const cube = new THREE.Mesh(geometry, material);
     
-    // Wireframe for neon effect
-    const wireframeMaterial = new THREE.LineBasicMaterial({ 
-      color: 0x00f0ff,
-      linewidth: 2
-    });
-    const wireframe = new THREE.LineSegments(edges, wireframeMaterial);
-    
-    const cubeGroup = new THREE.Group();
-    cubeGroup.add(cube);
-    cubeGroup.add(wireframe);
-    scene.add(cubeGroup);
-
     // Particle system
-    const particleCount = 100;
+    const particleCount = 200;
     const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     
@@ -123,16 +116,13 @@ export const ThreeScene = ({ className }: ThreeSceneProps) => {
     const animate = () => {
       frameRef.current = requestAnimationFrame(animate);
       
-      // Rotate cube group
-      cubeGroup.rotation.x += 0.005;
-      cubeGroup.rotation.y += 0.007;
-      
-      // Mouse interaction
-      cubeGroup.rotation.x += mouseRef.current.y * 0.01;
-      cubeGroup.rotation.y += mouseRef.current.x * 0.01;
-      
-      // Float animation
-      cubeGroup.position.y = Math.sin(Date.now() * 0.001) * 0.3;
+      // Animate tech icons
+      techIconsRef.current.forEach(icon => {
+        icon.position.y += 0.01;
+        if (icon.position.y > 10) {
+          icon.position.y = -10;
+        }
+      });
       
       // Animate particles
       particleSystem.rotation.y += 0.001;
@@ -140,6 +130,11 @@ export const ThreeScene = ({ className }: ThreeSceneProps) => {
       // Animate lights
       pointLight1.position.x = Math.sin(Date.now() * 0.002) * 5;
       pointLight2.position.z = Math.cos(Date.now() * 0.003) * 3;
+      
+      // Smooth camera motion
+      camera.position.x += (mouseRef.current.x * 2 - camera.position.x) * 0.05;
+      camera.position.y += (mouseRef.current.y * 2 - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
       
       renderer.render(scene, camera);
     };
@@ -160,9 +155,6 @@ export const ThreeScene = ({ className }: ThreeSceneProps) => {
       }
       
       // Dispose of Three.js objects
-      geometry.dispose();
-      material.dispose();
-      wireframeMaterial.dispose();
       particles.dispose();
       particleMaterial.dispose();
       renderer.dispose();
