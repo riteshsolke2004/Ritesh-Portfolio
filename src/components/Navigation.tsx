@@ -49,9 +49,20 @@ export const Navigation = () => {
     }`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="text-xl font-bold text-gradient">
-            Portfolio
-          </div>
+          {/* Video Logo */}
+          <a href="#hero" onClick={() => scrollToSection('hero')}>
+            <video 
+              src="/logo.mp4" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="h-20 w-auto"
+              aria-label="Portfolio Logo Video"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </a>
           
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (

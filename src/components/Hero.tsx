@@ -43,81 +43,67 @@ export const Hero = () => {
       repeat: -1
     });
 
-    // Canvas AI Avatar Animation
+    // Canvas Animation for Image Sequence
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Placeholder for image sequence (replace with your actual image URLs)
+    const frameCount = 100; // Adjust based on your number of images
+    const images: HTMLImageElement[] = [];
+    const imageSrcPrefix = '/path/to/your/images/frame_'; // Replace with your image path
+    const imageSrcSuffix = '.png'; // Adjust extension if needed
+
+    // Load images
+    for (let i = 1; i <= frameCount; i++) {
+      const img = new Image();
+      img.src = `${imageSrcPrefix}${i.toString().padStart(4, '0')}${imageSrcSuffix}`;
+      images.push(img);
+    }
+
+    let currentFrame = 0;
     let animationFrameId: number;
-    let headRotation = 0;
 
     const resizeCanvas = () => {
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
     };
     resizeCanvas();
-    
-    const handleScroll = () => {
-        const scrollY = window.scrollY;
-        const maxScroll = 300;
-        const scrollFraction = Math.min(scrollY / maxScroll, 1);
-        headRotation = scrollFraction * (Math.PI / 8); // Max tilt of 22.5 degrees
+
+    const drawImage = (frameIndex: number) => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const img = images[frameIndex];
+      if (img.complete) {
+        // Center and scale image to fit canvas
+        const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+        const x = (canvas.width - img.width * scale) / 2;
+        const y = (canvas.height - img.height * scale) / 2;
+        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+      }
     };
 
+    // Scroll handler
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollFraction = Math.min(scrollY / maxScroll, 1);
+      currentFrame = Math.floor(scrollFraction * (frameCount - 1));
+      drawImage(currentFrame);
+    };
+
+    // Initial draw
+    images[0].onload = () => drawImage(0);
+
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', resizeCanvas);
 
-    function drawAvatar() {
-        ctx!.clearRect(0, 0, canvas.width, canvas.height);
-        ctx!.save();
-        ctx!.translate(canvas.width / 2, canvas.height / 2);
-
-        // Add subtle hover animation
-        const hoverY = Math.sin(Date.now() * 0.001) * 10;
-        ctx!.translate(0, hoverY);
-        
-        // Apply scroll-based rotation
-        ctx!.rotate(headRotation);
-
-        // Draw head
-        ctx!.beginPath();
-        ctx!.arc(0, 0, 100, 0, Math.PI * 2);
-        ctx!.fillStyle = 'hsl(220, 20%, 20%)';
-        ctx!.fill();
-        ctx!.strokeStyle = 'hsl(191, 100%, 50%)';
-        ctx!.lineWidth = 2;
-        ctx!.stroke();
-
-        // Draw eye
-        ctx!.beginPath();
-        ctx!.arc(0, -10, 30, 0, Math.PI * 2);
-        ctx!.fillStyle = 'hsl(191, 100%, 50%)';
-        ctx!.fill();
-        
-        ctx!.beginPath();
-        ctx!.arc(0, -10, 10, 0, Math.PI * 2);
-        ctx!.fillStyle = 'hsl(220, 25%, 8%)';
-        ctx!.fill();
-
-        // Draw some details
-        ctx!.beginPath();
-        ctx!.moveTo(-40, 50);
-        ctx!.lineTo(-30, 70);
-        ctx!.lineTo(30, 70);
-        ctx!.lineTo(40, 50);
-        ctx!.strokeStyle = 'hsl(191, 100%, 50%)';
-        ctx!.stroke();
-
-        ctx!.restore();
-    }
-
+    // Animation loop for smooth rendering
     function animate() {
-      drawAvatar();
+      drawImage(currentFrame);
       animationFrameId = requestAnimationFrame(animate);
     }
     animate();
-
-    window.addEventListener('resize', resizeCanvas);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
@@ -141,7 +127,7 @@ export const Hero = () => {
         <div ref={heroRef} className="relative z-10 max-w-2xl text-left">
           <h1 
             ref={titleRef}
-            className="text-6xl md:text-8xl font-bold mb-6 text-gradient"
+            className="text-4xl md:text-6xl font-bold mb- text-gradient"
           >
             Ritesh Solke
           </h1>
@@ -150,7 +136,7 @@ export const Hero = () => {
             ref={subtitleRef}
             className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl leading-relaxed"
           >
-            🚀 Full Stack & AI/ML enthusiast | Passionate about building smart tech solutions and exploring innovation.
+            Full Stack & AI/ML enthusiast | Passionate about building smart tech solutions and exploring innovation.
           </p>
           
           <div ref={ctaRef} className="flex flex-col sm:flex-row items-start justify-start gap-6 mb-12">
