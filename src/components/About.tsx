@@ -138,9 +138,9 @@ export const About = () => {
                       // e.target.nextSibling.style.display = 'flex';
                     }}
                   />
-                  <div className="w-full h-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center text-8xl font-bold text-white hidden">
+                  {/* <div className="w-full h-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center text-8xl font-bold text-white hidden">
                     RS
-                  </div>
+                  </div> */}
                 </div>
                 <div className="absolute -top-2 -right-2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
                   <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
