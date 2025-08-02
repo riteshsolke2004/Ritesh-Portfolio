@@ -164,9 +164,9 @@ export const Hero = () => {
         
         {/* Name with glitch effect */}
         <div className="relative mb-6">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 animate-pulse">
+          {/* <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 animate-pulse">
             Ritesh Solke
-          </h1>
+          </h1> */}
           <h1 className="absolute inset-0 text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-pink-500 opacity-0 hover:opacity-20 transition-opacity duration-300 transform translate-x-1 translate-y-1">
             Ritesh Solke
           </h1>

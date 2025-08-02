@@ -26,7 +26,6 @@ const CssIcon = () => (
   </svg>
 );
 
-
 const JavaScriptIcon = () => (
   <svg viewBox="0 0 128 128" className="w-16 h-16">
     <path fill="#F0DB4F" d="M1.408 1.408h125.184v125.185H1.408z"/>
@@ -101,27 +100,206 @@ const PythonIcon = () => (
 
 const FastApiIcon = () => (
   <svg viewBox="0 0 128 128" className="w-16 h-16">
-    <path fill="#009688" d="M64 1L28 20v88l36 19 36-19V20L64 1zm30 99L64 119 34 100V28l30-19 30 19v72z"/>
-    <path fill="#009688" d="M64 40v48l-20-24L64 40zm0 0l20 24L64 88V40z"/>
-    <circle cx="64" cy="64" r="8" fill="#009688"/>
+    <defs>
+      <linearGradient id="fastapi-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#05998B"/>
+        <stop offset="100%" stopColor="#009485"/>
+      </linearGradient>
+      <linearGradient id="fastapi-lightning" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#FFFFFF"/>
+        <stop offset="100%" stopColor="#F0F0F0"/>
+      </linearGradient>
+    </defs>
+    
+    {/* Background circle */}
+    <circle cx="64" cy="64" r="56" fill="url(#fastapi-bg)"/>
+    
+    {/* Main lightning bolt */}
+    <path 
+      fill="url(#fastapi-lightning)" 
+      d="M76 28L44 64H56L48 100L80 64H68L76 28Z"
+    />
+    
+    {/* Lightning bolt shadow for depth */}
+    <path 
+      fill="rgba(0,0,0,0.1)" 
+      d="M78 30L46 66H58L50 102L82 66H70L78 30Z"
+    />
+    
+    {/* Inner highlight on lightning */}
+    <path 
+      fill="#FFFFFF" 
+      d="M72 32L48 60H58L52 92L76 60H66L72 32Z"
+      opacity="0.9"
+    />
+    
+    {/* Additional small lightning accents */}
+    <path 
+      fill="rgba(255,255,255,0.6)" 
+      d="M68 36L68 42L72 42L68 48L68 54L64 54L68 36Z"
+    />
+    <path 
+      fill="rgba(255,255,255,0.6)" 
+      d="M60 74L60 80L64 80L60 86L60 92L56 92L60 74Z"
+    />
   </svg>
 );
+
 
 const MongoDbIcon = () => (
   <svg viewBox="0 0 128 128" className="w-16 h-16">
-    <path fill="#439934" d="M88.038 2.911c-11.327 0-20.5 9.173-20.5 20.5 0 11.327 9.173 20.5 20.5 20.5s20.5-9.173 20.5-20.5c0-11.327-9.173-20.5-20.5-20.5zm0 36c-8.547 0-15.5-6.953-15.5-15.5s6.953-15.5 15.5-15.5 15.5 6.953 15.5 15.5-6.953 15.5-15.5 15.5z"/>
-    <path fill="#58aa50" d="M61.729 110.012c-1.363-1.248-1.756-2.861-1.521-4.721.157-1.244.932-2.297 2.029-3.081l.016-.011c1.363-1.248 1.756-2.861 1.521-4.721-.157-1.244-.932-2.297-2.029-3.081l-.016-.011c-1.363-1.248-1.756-2.861-1.521-4.721.157-1.244.932-2.297 2.029-3.081l.016-.011c1.363-1.248 1.756-2.861 1.521-4.721-.157-1.244-.932-2.297-2.029-3.081l-.016-.011c-1.363-1.248-1.756-2.861-1.521-4.721.157-1.244.932-2.297 2.029-3.081l.016-.011c1.363-1.248 1.756-2.861 1.521-4.721-.157-1.244-.932-2.297-2.029-3.081l-.016-.011c-1.363-1.248-1.756-2.861-1.521-4.721.078-.621.25-1.193.496-1.723-.333.18-.65.388-.942.625l-.016.011c-1.097.784-1.872 1.837-2.029 3.081-.235 1.86.158 3.473 1.521 4.721l.016.011c1.097.784 1.872 1.837 2.029 3.081.235 1.86-.158 3.473-1.521 4.721l-.016.011c-1.097.784-1.872 1.837-2.029 3.081-.235 1.86.158 3.473 1.521 4.721l.016.011c1.097.784 1.872 1.837 2.029 3.081.235 1.86-.158 3.473-1.521 4.721l-.016.011c-1.097.784-1.872 1.837-2.029 3.081-.235 1.86.158 3.473 1.521 4.721l.016.011c1.097.784 1.872 1.837 2.029 3.081.078.621.25 1.193.496 1.723z"/>
-    <path fill="#4FAA41" d="M64 0C28.654 0 0 28.654 0 64s28.654 64 64 64 64-28.654 64-64S99.346 0 64 0zm23.273 63.273c-.727.727-1.455 1.091-2.182 1.091h-5.819L64 79.636 48.728 64.364h-5.819c-.727 0-1.455-.364-2.182-1.091s-1.091-1.455-1.091-2.182c0-.727.364-1.455 1.091-2.182s1.455-1.091 2.182-1.091h5.819L64 42.546l15.272 15.272h5.819c.727 0 1.455.364 2.182 1.091s1.091 1.455 1.091 2.182c0 .727-.364 1.455-1.091 2.182z"/>
+    <defs>
+      <linearGradient id="mongodb-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#4DB33D"/>
+        <stop offset="50%" stopColor="#6CC04A"/>
+        <stop offset="100%" stopColor="#589636"/>
+      </linearGradient>
+      <linearGradient id="mongodb-shadow" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#3F6F21"/>
+        <stop offset="100%" stopColor="#2D4A1A"/>
+      </linearGradient>
+    </defs>
+    
+    {/* Main leaf shape */}
+    <path 
+      fill="url(#mongodb-gradient)" 
+      d="M64 8C64 8 48 28 48 52C48 72 56 88 64 96C72 88 80 72 80 52C80 28 64 8 64 8Z"
+    />
+    
+    {/* Leaf shadow/depth */}
+    <path 
+      fill="url(#mongodb-shadow)" 
+      d="M64 8C64 8 68 28 68 52C68 72 66 88 64 96C66 88 72 72 72 52C72 28 64 8 64 8Z"
+    />
+    
+    {/* Central vein */}
+    <path 
+      fill="#3F6F21" 
+      d="M64 8L64 96C64 96 64.5 88 64.5 52C64.5 28 64 8 64 8Z"
+      strokeWidth="0.5"
+    />
+    
+    {/* Stem */}
+    <rect 
+      x="62" 
+      y="96" 
+      width="4" 
+      height="16" 
+      fill="#8B4513" 
+      rx="2"
+    />
+    
+    {/* Small highlight on leaf */}
+    <ellipse 
+      cx="58" 
+      cy="35" 
+      rx="3" 
+      ry="8" 
+      fill="#7ED321" 
+      opacity="0.6"
+    />
   </svg>
 );
 
+
+
 const SqlIcon = () => (
   <svg viewBox="0 0 128 128" className="w-16 h-16">
-    <path fill="#00758F" d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64 64-28.7 64-64S99.3 0 64 0zm0 116c-28.7 0-52-23.3-52-52s23.3-52 52-52 52 23.3 52 52-23.3 52-52 52z"/>
-    <path fill="#00758F" d="M64 20c-24.3 0-44 19.7-44 44s19.7 44 44 44 44-19.7 44-44-19.7-44-44-44zm0 76c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
-    <path fill="#fff" d="M64 40c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24zm0 36c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12z"/>
+    <defs>
+      <linearGradient id="sql-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#4A90E2"/>
+        <stop offset="100%" stopColor="#2E5F8F"/>
+      </linearGradient>
+      <linearGradient id="sql-light-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#7BB3F0"/>
+        <stop offset="100%" stopColor="#4A90E2"/>
+      </linearGradient>
+    </defs>
+    
+    {/* Background rounded rectangle */}
+    <rect width="128" height="128" fill="url(#sql-blue)" rx="16"/>
+    
+    {/* Database cylinder top */}
+    <ellipse 
+      cx="64" 
+      cy="35" 
+      rx="35" 
+      ry="12" 
+      fill="url(#sql-light-blue)"
+    />
+    
+    {/* Database cylinder body */}
+    <rect 
+      x="29" 
+      y="35" 
+      width="70" 
+      height="45" 
+      fill="url(#sql-blue)"
+    />
+    
+    {/* Database cylinder segments */}
+    <ellipse 
+      cx="64" 
+      cy="50" 
+      rx="35" 
+      ry="12" 
+      fill="url(#sql-light-blue)"
+      opacity="0.8"
+    />
+    <ellipse 
+      cx="64" 
+      cy="65" 
+      rx="35" 
+      ry="12" 
+      fill="url(#sql-light-blue)"
+      opacity="0.6"
+    />
+    <ellipse 
+      cx="64" 
+      cy="80" 
+      rx="35" 
+      ry="12" 
+      fill="url(#sql-light-blue)"
+    />
+    
+    {/* SQL text */}
+    <text 
+      x="64" 
+      y="108" 
+      textAnchor="middle" 
+      fill="#FFFFFF" 
+      fontSize="20" 
+      fontWeight="bold" 
+      fontFamily="Arial, sans-serif"
+    >
+  
+    </text>
+    
+    {/* Database highlight */}
+    <ellipse 
+      cx="50" 
+      cy="30" 
+      rx="8" 
+      ry="3" 
+      fill="#FFFFFF" 
+      opacity="0.4"
+    />
+    
+    {/* Side highlight line */}
+    <rect 
+      x="95" 
+      y="40" 
+      width="2" 
+      height="35" 
+      fill="#FFFFFF" 
+      opacity="0.3"
+      rx="1"
+    />
   </svg>
 );
+
+
+
 
 const frontendSkills = [
   { name: 'HTML', Icon: HtmlIcon },
