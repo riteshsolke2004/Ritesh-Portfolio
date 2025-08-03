@@ -99,39 +99,39 @@ export const Contact = () => {
   ];
 
   return (
-    <section id="contact" ref={sectionRef} className="relative py-24 px-6 bg-muted/20">
+    <section id="contact" ref={sectionRef} className="relative py-16 md:py-24 px-4 md:px-6 bg-muted/20">
       <div className="container mx-auto max-w-6xl">
         <h2
           ref={titleRef}
-          className="text-5xl md:text-6xl font-bold text-center mb-16 text-gradient"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-12 md:mb-16 text-gradient"
         >
           Let's Connect
         </h2>
 
-        <div className="space-y-12">
+        <div className="space-y-8 md:space-y-12">
           {/* Contact Info Section */}
-          <div ref={infoRef} className="space-y-8">
+          <div ref={infoRef} className="space-y-6 md:space-y-8">
             <div>
-              <h3 className="text-2xl font-semibold mb-4 text-primary">Get in touch</h3>
-              <p className="text-muted-foreground leading-relaxed mb-8">
+              <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-primary">Get in touch</h3>
+              <p className="text-muted-foreground leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
                 I'm always interested in hearing about new opportunities and interesting projects.
                 Whether you have a question or just want to say hello, feel free to reach out!
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {contactInfo.map((info, index) => (
                 <a
                   key={index}
                   href={info.href}
-                  className="flex items-center gap-4 p-4 glass-card rounded-lg hover-glow transition-all duration-300 hover:scale-105 group"
+                  className="flex items-center gap-3 md:gap-4 p-3 md:p-4 glass-card rounded-lg hover-glow transition-all duration-300 hover:scale-105 group"
                 >
-                  <div className="p-3 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                    <info.icon className="w-6 h-6" />
+                  <div className="p-2 md:p-3 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                    <info.icon className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">{info.label}</p>
-                    <p className="font-medium text-foreground">{info.value}</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">{info.label}</p>
+                    <p className="font-medium text-foreground text-sm md:text-base">{info.value}</p>
                   </div>
                 </a>
               ))}
@@ -139,7 +139,8 @@ export const Contact = () => {
           </div>
 
           {/* Visme Form Section */}
-          <Card ref={formRef} className="glass-card p-8">
+          {/* Desktop - Card wrapper */}
+          <Card ref={formRef} className="hidden md:block glass-card p-8">
             <h3 className="text-2xl font-semibold mb-6 text-primary">Send me a message</h3>
             <div
               className="visme_d"
@@ -152,12 +153,44 @@ export const Contact = () => {
             ></div>
           </Card>
 
+          {/* Mobile - No card wrapper */}
+          <div ref={formRef} className="md:hidden space-y-4">
+            <div>
+              <h3 className="text-xl font-semibold mb-2 text-primary">Send me a message</h3>
+              <p className="text-muted-foreground text-sm mb-4">
+                Fill out the form below and I'll get back to you as soon as possible.
+              </p>
+            </div>
+            
+            {/* Mobile optimized form container */}
+            <div className="w-full -mx-4 px-4">
+              <div
+                className="visme_d w-full"
+                data-title="Podcast Release Form"
+                data-url="vm1grv8z-untitled-project"
+                data-domain="forms"
+                data-full-page="false"
+                data-min-height="600px"
+                data-form-id="139191"
+                style={{
+                  width: '100%',
+                  minHeight: '600px',
+                  border: 'none',
+                  borderRadius: '12px',
+                  overflow: 'hidden',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(10px)'
+                }}
+              ></div>
+            </div>
+          </div>
+
           {/* Call to Action Card */}
-          <Card className="glass-card p-6 text-center">
-            <h4 className="text-lg font-semibold mb-2 text-primary">
+          <Card className="glass-card p-4 md:p-6 text-center">
+            <h4 className="text-base md:text-lg font-semibold mb-2 text-primary">
               Let's build something amazing together
             </h4>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-sm md:text-base">
               Ready to turn your ideas into reality? I'm here to help bring your vision to life.
             </p>
           </Card>
@@ -166,9 +199,39 @@ export const Contact = () => {
 
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-gradient-glow rounded-full opacity-5 animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/3 w-56 h-56 bg-gradient-secondary rounded-full opacity-5 animate-float" />
+        <div className="absolute top-1/3 left-1/4 w-48 h-48 md:w-72 md:h-72 bg-gradient-glow rounded-full opacity-5 animate-pulse-glow" />
+        <div className="absolute bottom-1/4 right-1/3 w-36 h-36 md:w-56 md:h-56 bg-gradient-secondary rounded-full opacity-5 animate-float" />
       </div>
+
+      {/* Mobile-specific CSS for Visme form */}
+      <style >{`
+        .visme_d iframe {
+          width: 100% !important;
+          border: none !important;
+          border-radius: 12px !important;
+        }
+        
+        @media (max-width: 767px) {
+          .visme_d {
+            min-height: 600px !important;
+            margin: 0 !important;
+          }
+          
+          .visme_d iframe {
+            min-height: 600px !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .visme_d {
+            min-height: 650px !important;
+          }
+          
+          .visme_d iframe {
+            min-height: 650px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

@@ -26,6 +26,7 @@ const Index = () => {
         {/* Navigation */}
         <Navigation />
         
+        
         {/* Main Content */}
         <main className="relative z-10">
           <Hero />

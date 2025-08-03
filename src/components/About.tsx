@@ -55,20 +55,20 @@ export const About = () => {
       icon: <Database className="w-8 h-8" />,
       title: "Backend Development",
       description: "Building scalable server-side applications with Node.js, Python, and cloud technologies.",
-      skills: ["Node.js", "Python", "FastAPI", "PostgreSQL", "AWS"]
+      skills: [ "Python", "FastAPI", "MySQL", "Vercel"]
     },
     {
       icon: <Palette className="w-8 h-8" />,
       title: "UI/UX Design",
       description: "Designing intuitive user experiences with attention to detail and modern design principles.",
-      skills: ["Figma", "Adobe XD", "Framer", "Design Systems", "Prototyping"]
+      skills: ["Figma", "Adobe XD", "Framer", "Design Systems"]
     },
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: "Performance Optimization",
-      description: "Ensuring lightning-fast load times and smooth user experiences across all devices.",
-      skills: ["Web Performance", "SEO", "PWA", "Core Web Vitals", "Optimization"]
-    }
+    // {
+    //   icon: <Zap className="w-8 h-8" />,
+    //   title: "Performance Optimization",
+    //   description: "Ensuring lightning-fast load times and smooth user experiences across all devices.",
+    //   skills: ["Web Performance", "SEO", "PWA", "Core Web Vitals", "Optimization"]
+    // }
   ];
 
   const journey = [
@@ -160,10 +160,17 @@ export const About = () => {
                 ))}
               </div>
 
-              <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 transition-all duration-300">
-                <Download className="w-4 h-4 mr-2" />
-                Download Resume
-              </Button>
+              <a 
+  href="/Ritesh Solke's CV.pdf" 
+  download 
+  className="block w-full"
+>
+  <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 transition-all duration-300">
+    <Download className="w-4 h-4 mr-2" />
+    Download Resume
+  </Button>
+</a>
+
             </Card>
           </div>
 
@@ -174,15 +181,11 @@ export const About = () => {
               
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Hey there! I'm Ritesh, a passionate computer engineering student turned full-stack web developer. 
-                  My journey into the world of web development started with curiosity and has evolved into a deep love 
-                  for creating digital experiences that make a difference.
+                  Hi, I'm Ritesh - a Computer Engineering student turned Full-Stack Developer. My journey into web development began with curiosity and quickly grew into a passion for building impactful digital experiences.
                 </p>
                 
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  What drives me is the perfect blend of logical problem-solving and creative expression that web 
-                  development offers. Whether I'm architecting scalable backend systems or crafting pixel-perfect 
-                  user interfaces, I approach each project with enthusiasm and attention to detail.
+                  I enjoy combining logical thinking with creativity, whether it's designing clean user interfaces or developing robust backend systems. Every project I take on is driven by a love for learning and a focus on quality.
                 </p>
                 
                 {/* <p className="text-muted-foreground leading-relaxed mb-8">

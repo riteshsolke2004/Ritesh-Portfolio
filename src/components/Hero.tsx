@@ -143,7 +143,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 pt-20">
+    <section id = "hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 pt-20">
       {/* Animated background canvas */}
       <canvas
         ref={canvasRef}
@@ -190,7 +190,7 @@ export const Hero = () => {
         </div>
         
         {/* Interactive skill icons */}
-        {/* <div className="flex justify-center gap-8 mb-10">
+        <div className="flex justify-center gap-8 mb-10">
           {[
             { icon: Code, label: 'Code', color: 'text-blue-400' },
             { icon: Brain, label: 'AI/ML', color: 'text-purple-400' },
@@ -210,7 +210,7 @@ export const Hero = () => {
             </div>
           ))}
         </div>
-         */}
+        
         {/* CTA buttons with enhanced effects */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10">
           <Button
