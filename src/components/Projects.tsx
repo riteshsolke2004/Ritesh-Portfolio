@@ -12,10 +12,37 @@ export const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const projects = [
+
+    {
+  title: "Student Advisor Portal",
+  description: "An AI-powered career guidance platform featuring a personalized roadmap mentor, resume ATS evaluator, and student community forum. Designed to enhance career readiness through adaptive agent-based recommendations and seamless multi-tool integration on Google Cloud Platform (GCP).",
+  image: "https://jaro-website.s3.ap-south-1.amazonaws.com/2025/02/115c7288f953204c4639bba8875f4993.jpg",
+  tags: ["FastAPI", "React", "AI", "GCP", "NLP", "MongoDB"],
+  category: "AI & Web Development",
+  featured: true,
+  year: "2025",
+  status: "Live",
+  liveUrl: "https://student-advisor-portal.vercel.app/",
+  githubUrl: "https://github.com/riteshsolke2004/Student-Advisor-Portal"
+}
+,
+{
+  title: "FinZer – AI-Powered Personal Finance Coach",
+  description: "A full-stack AI-driven personal finance platform that helps users manage expenses, analyze spending patterns, and receive smart investment insights. Built with React.js, Tailwind CSS, and FastAPI integrated with Python ML models for real-time, data-driven financial recommendations.",
+  image: "https://images.yourstory.com/cs/2/f02aced0d86311e98e0865c1f0fe59a2/Fintech-1599488865962.png?mode=crop&crop=faces&ar=2%3A1&format=auto&w=1920&q=75",
+  tags: ["React", "FastAPI", "TailwindCSS", "Machine Learning", "Python", "MongoDB"],
+  category: "AI & FinTech",
+  featured: true,
+  year: "2025",
+  status: "Live",
+  liveUrl: "https://finzer-ai.vercel.app/",
+  githubUrl: "https://github.com/riteshsolke2004/FinZer-Financial-Advisor"
+}
+,
     {
       title: "AI Robotics Club",
       description: "The AI Robotics Club website showcases our mission to explore cutting-edge technologies in artificial intelligence and robotics. It features our latest projects, events, team initiatives, and offers students a platform to collaborate, innovate, and grow in the world of smart tech.",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&crop=center",
+      image: "https://www.aitude.com/wp-content/uploads/2022/07/The-role-of-AI-in-Robotics-min.png",
       tags: ["React.js", "Python", "FastAPI", "Three.js"],
       category: "Web Development",
       featured: true,
