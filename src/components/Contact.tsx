@@ -34,13 +34,13 @@ export const Contact = () => {
     );
 
     // Load Visme script only once
-    if (!document.getElementById('visme-script')) {
-      const script = document.createElement('script');
-      script.src = 'https://static-bundles.visme.co/forms/vismeforms-embed.js';
-      script.async = true;
-      script.id = 'visme-script';
-      document.body.appendChild(script);
-    }
+    // if (!document.getElementById('visme-script')) {
+    //   const script = document.createElement('script');
+    //   script.src = 'https://static-bundles.visme.co/forms/vismeforms-embed.js';
+    //   script.async = true;
+    //   script.id = 'visme-script';
+    //   document.body.appendChild(script);
+    // }
 
     // Form animation
     gsap.fromTo(
@@ -140,7 +140,7 @@ export const Contact = () => {
 
           {/* Visme Form Section */}
           {/* Desktop - Card wrapper */}
-          <Card ref={formRef} className="hidden md:block glass-card p-8">
+          {/* <Card ref={formRef} className="hidden md:block glass-card p-8">
             <h3 className="text-2xl font-semibold mb-6 text-primary">Send me a message</h3>
             <div
               className="visme_d"
@@ -151,7 +151,7 @@ export const Contact = () => {
               data-min-height="400px"
               data-form-id="139191"
             ></div>
-          </Card>
+          </Card> */}
 
           {/* Mobile - No card wrapper */}
           <div ref={formRef} className="md:hidden space-y-4">
