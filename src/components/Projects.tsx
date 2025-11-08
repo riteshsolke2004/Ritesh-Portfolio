@@ -36,9 +36,21 @@ export const Projects = () => {
   year: "2025",
   status: "Live",
   liveUrl: "https://finzer-ai.vercel.app/",
-  githubUrl: "https://github.com/riteshsolke2004/FinZer-Financial-Advisor"
-}
-,
+  githubUrl: "https://github.com/riteshsolke2004/Finzer-Financial_Advisor"
+},
+
+{
+      title: "E-commerce Website",
+      description: "A modern and responsive e-commerce web application built with seamless user experience in mind. Features include product browsing, cart functionality, and smooth checkout flow — designed to showcase my skills in front-end development, UI/UX design, and responsive layout.",
+      image: "https://img.freepik.com/free-vector/e-commerce-flat-concept_1284-22119.jpg?semt=ais_hybrid&w=740&q=80",
+      tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
+      category: "Web Development",
+      featured: true,
+      year: "2025",
+      status: "Live",
+      liveUrl: "https://e-commerce-beryl-five-53.vercel.app/",
+      githubUrl: "https://github.com/riteshsolke2004/Nexora-E-commerce"
+    },
     {
       title: "AI Robotics Club",
       description: "The AI Robotics Club website showcases our mission to explore cutting-edge technologies in artificial intelligence and robotics. It features our latest projects, events, team initiatives, and offers students a platform to collaborate, innovate, and grow in the world of smart tech.",

@@ -153,37 +153,7 @@ export const Contact = () => {
             ></div>
           </Card> */}
 
-          {/* Mobile - No card wrapper */}
-          <div ref={formRef} className="md:hidden space-y-4">
-            <div>
-              <h3 className="text-xl font-semibold mb-2 text-primary">Send me a message</h3>
-              <p className="text-muted-foreground text-sm mb-4">
-                Fill out the form below and I'll get back to you as soon as possible.
-              </p>
-            </div>
-            
-            {/* Mobile optimized form container */}
-            <div className="w-full -mx-4 px-4">
-              <div
-                className="visme_d w-full"
-                data-title="Podcast Release Form"
-                data-url="vm1grv8z-untitled-project"
-                data-domain="forms"
-                data-full-page="false"
-                data-min-height="600px"
-                data-form-id="139191"
-                style={{
-                  width: '100%',
-                  minHeight: '600px',
-                  border: 'none',
-                  borderRadius: '12px',
-                  overflow: 'hidden',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  backdropFilter: 'blur(10px)'
-                }}
-              ></div>
-            </div>
-          </div>
+         
 
           {/* Call to Action Card */}
           <Card className="glass-card p-4 md:p-6 text-center">
