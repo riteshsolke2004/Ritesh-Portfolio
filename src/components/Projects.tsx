@@ -35,7 +35,7 @@ export const Projects = () => {
   featured: true,
   year: "2025",
   status: "Live",
-  liveUrl: "https://finzer-ai.vercel.app/",
+  liveUrl: "https://finzer-financial-advisor.vercel.app/",
   githubUrl: "https://github.com/riteshsolke2004/Finzer-Financial_Advisor"
 },
 
