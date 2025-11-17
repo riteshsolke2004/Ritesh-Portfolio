@@ -9,6 +9,8 @@ import { SmoothScroll } from '@/components/SmoothScroll';
 import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
 import MagneticCursor from '@/components/MagneticCursor';
 import { Footer } from '@/components/Footer';
+import { Education } from '@/components/Education';
+import { Achievements } from '@/components/Achievements';
 
 
 const Index = () => {
@@ -33,7 +35,10 @@ const Index = () => {
           <About />
           <Projects />
           <Skills />
+          <Education />
+          <Achievements/>
           <Contact />
+          
         </main>
         
         <Footer/>

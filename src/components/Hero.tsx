@@ -1,66 +1,45 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, Github, Linkedin, Mail, Play, Code, Brain, Rocket } from 'lucide-react';
+import { MapPin, Award, Mail as MailIcon, Github, Linkedin, Mail, Instagram, GraduationCap, Trophy } from 'lucide-react';
+import profileImage from '../../public/profile-picture.jpg';
 
 export const Hero = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [typedText, setTypedText] = useState('');
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  
-  const roles = [
-    'Full Stack Developer',
-    'AI/ML Engineer',
-    'Tech Innovator'
-  ];
+  const rafIdRef = useRef<number | null>(null);
 
-  // Typing animation effect
+  // THROTTLED mouse tracking
   useEffect(() => {
-    const currentRole = roles[currentRoleIndex];
-    let charIndex = 0;
-    let isDeleting = false;
-    
-    const typeInterval = setInterval(() => {
-      if (!isDeleting && charIndex < currentRole.length) {
-        setTypedText(currentRole.substring(0, charIndex + 1));
-        charIndex++;
-      } else if (isDeleting && charIndex > 0) {
-        setTypedText(currentRole.substring(0, charIndex - 1));
-        charIndex--;
-      } else if (!isDeleting && charIndex === currentRole.length) {
-        setTimeout(() => { isDeleting = true; }, 2000);
-      } else if (isDeleting && charIndex === 0) {
-        setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
-        isDeleting = false;
-      }
-    }, isDeleting ? 50 : 100);
-
-    return () => clearInterval(typeInterval);
-  }, [currentRoleIndex]);
-
-  // Mouse tracking for interactive effects
-  useEffect(() => {
-    const handleMouseMove = (e) => {
+    let lastUpdate = 0;
+    const handleMouseMove = (e: MouseEvent) => {
+      const now = Date.now();
+      if (now - lastUpdate < 16) return;
+      lastUpdate = now;
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Particle system animation
+  // Optimized particle system
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    const particles = [];
-    const particleCount = 100;
+    const particles: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      opacity: number;
+    }> = [];
+    const particleCount = 80;
     
-    // Initialize particles
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -78,24 +57,20 @@ export const Hero = () => {
     };
     
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas, { passive: true });
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Update and draw particles
       particles.forEach((particle, index) => {
-        // Move particle
         particle.x += particle.vx;
         particle.y += particle.vy;
         
-        // Wrap around edges
         if (particle.x < 0) particle.x = canvas.width;
         if (particle.x > canvas.width) particle.x = 0;
         if (particle.y < 0) particle.y = canvas.height;
         if (particle.y > canvas.height) particle.y = 0;
         
-        // Mouse interaction
         const dx = mousePosition.x - particle.x;
         const dy = mousePosition.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -105,14 +80,12 @@ export const Hero = () => {
           particle.y -= dy * 0.01;
         }
         
-        // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`;
         ctx.fill();
         
-        // Draw connections
-        particles.slice(index + 1).forEach(otherParticle => {
+        particles.slice(index + 1, index + 6).forEach(otherParticle => {
           const dx2 = particle.x - otherParticle.x;
           const dy2 = particle.y - otherParticle.y;
           const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
@@ -128,152 +101,197 @@ export const Hero = () => {
         });
       });
       
-      requestAnimationFrame(animate);
+      rafIdRef.current = requestAnimationFrame(animate);
     };
     
-    animate();
+    rafIdRef.current = requestAnimationFrame(animate);
     
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
     };
   }, [mousePosition]);
 
-  const scrollToSection = (sectionId) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+  // Scroll to section function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <section id = "hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 pt-20">
-      {/* Animated background canvas */}
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-20">
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full z-[1]"
         style={{ background: 'transparent' }}
       />
       
-      {/* Dark gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-950/20 via-purple-950/20 to-cyan-950/20" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-slate-950/80 to-slate-950" />
+      <div className="absolute inset-0 bg-black z-[2]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-950/5 via-purple-950/5 to-cyan-950/5 z-[3]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/20 to-black z-[4]" />
       
-      {/* Main content */}
-      <div className="relative z-10 text-center px-6 max-w-6xl mx-auto mt-8">
-        {/* Floating elements - adjusted for navbar */}
-        <div className="absolute -top-10 -left-20 w-40 h-40 bg-blue-500/10 rounded-full blur-xl animate-pulse" />
-        <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-purple-500/10 rounded-full blur-xl animate-pulse delay-1000" />
-        
-        {/* Name with glitch effect */}
-        <div className="relative mb-6">
-          {/* <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 animate-pulse">
-            Ritesh Solke
-          </h1> */}
-          <h1 className="absolute inset-0 text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-pink-500 opacity-0 hover:opacity-20 transition-opacity duration-300 transform translate-x-1 translate-y-1">
-            Ritesh Solke
-          </h1>
-        </div>
-        
-        {/* Typing animation */}
-        <div className="h-16 mb-8 flex items-center justify-center">
-          <p className="text-2xl md:text-4xl text-slate-300 font-light">
-            {typedText}<span className="animate-blink text-blue-400">|</span>
-          </p>
-        </div>
-        
-        {/* Description with glassmorphism */}
-        <div className="backdrop-blur-sm bg-slate-800/20 rounded-2xl p-6 mb-10 border border-slate-700/30">
-          <p className="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mx-auto">
-            Crafting intelligent solutions at the intersection of 
-            <span className="text-blue-400 font-semibold"> Full Stack Development</span> and 
-            <span className="text-purple-400 font-semibold"> Artificial Intelligence</span>. 
-            Passionate about building the future, one line of code at a time.
-          </p>
-        </div>
-        
-        {/* Interactive skill icons */}
-        <div className="flex justify-center gap-8 mb-10">
-          {[
-            { icon: Code, label: 'Code', color: 'text-blue-400' },
-            { icon: Brain, label: 'AI/ML', color: 'text-purple-400' },
-            { icon: Rocket, label: 'Innovation', color: 'text-cyan-400' }
-          ].map(({ icon: Icon, label, color }, index) => (
-            <div
-              key={label}
-              className="group relative"
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              <div className={`p-4 rounded-full border border-slate-700/50 backdrop-blur-sm bg-slate-800/30 hover:bg-slate-800/50 transition-all duration-300 hover:scale-110 hover:rotate-6 ${color}`}>
-                <Icon className="w-8 h-8" />
-              </div>
-              <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-slate-300">
-                {label}
-              </span>
-            </div>
-          ))}
-        </div>
-        
-        {/* CTA buttons with enhanced effects */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10">
-          <Button
-            size="lg"
-            onClick={() => scrollToSection('projects')}
-            className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white border-0 px-8 py-4 text-lg font-semibold rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              <Play className="w-5 h-5" />
-              View My Work
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/0 opacity-0 hover:opacity-100 transition-opacity duration-300" />
-          </Button>
+      <div className="relative z-[10] px-6 max-w-7xl mx-auto w-full">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={() => scrollToSection('contact')}
-            className="border-2 border-slate-600 text-slate-200 hover:bg-slate-200 hover:text-slate-900 px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm bg-slate-800/20 transform hover:scale-105 transition-all duration-300"
-          >
-            Let's Connect
-          </Button>
-        </div>
-        
-        {/* Social links with enhanced styling */}
-        <div className="flex items-center justify-center gap-6 mb-12">
-          {[
-            { icon: Github, href: 'https://github.com/riteshsolke2004', label: 'GitHub' },
-            { icon: Linkedin, href: 'https://www.linkedin.com/in/riteshsolke/', label: 'LinkedIn' },
-            { icon: Mail, href: 'mailto:riteshsolke12@gmail.com', label: 'Email' }
-          ].map(({ icon: Icon, href, label }) => (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith('http') ? '_blank' : '_self'}
-              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="group relative p-4 rounded-full backdrop-blur-sm bg-slate-800/30 border border-slate-700/50 hover:bg-slate-800/50 hover:border-slate-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1"
-            >
-              <Icon className="w-6 h-6 text-slate-300 group-hover:text-white transition-colors duration-300" />
-              <span className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                {label}
-              </span>
-            </a>
-          ))}
-        </div>
-        
-        {/* Scroll indicator */}
-        <button
-          onClick={() => scrollToSection('about')}
-          className="group flex flex-col items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors duration-300"
-          aria-label="Scroll to About section"
-        >
-          <span className="text-sm uppercase tracking-wider font-medium">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-slate-500 group-hover:border-slate-300 rounded-full flex justify-center transition-colors duration-300">
-            <div className="w-1 h-3 bg-slate-500 group-hover:bg-slate-300 rounded-full mt-2 animate-bounce transition-colors duration-300" />
+          {/* Profile Image Section */}
+          <div className="flex flex-col items-center lg:items-start">
+            <div className="relative group mb-8">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
+              
+              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-slate-700/50 backdrop-blur-sm shadow-2xl transform group-hover:scale-105 transition-transform duration-500">
+                <img 
+                  src={profileImage} 
+                  alt="Ritesh Solke" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-blue-500/10 rounded-full blur-xl" />
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-purple-500/10 rounded-full blur-xl" />
+            </div>
+
+            {/* NEW: Education & Achievements Buttons */}
+            <div className="flex gap-4 w-full max-w-md">
+              <Button
+                onClick={() => scrollToSection('education')}
+                className="flex-1 group relative overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-400 hover:to-purple-500 text-white border-0 rounded-xl py-6 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25"
+
+              >
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <div className="relative flex items-center justify-center gap-2">
+                  <GraduationCap className="w-5 h-5" />
+                  <span className="font-semibold">Education</span>
+                </div>
+              </Button>
+
+              <Button
+                onClick={() => scrollToSection('achievements')}
+                className="flex-1 group relative overflow-hidden bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white border-0 rounded-xl py-6 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-orange-500/25"
+
+              >
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <div className="relative flex items-center justify-center gap-2">
+                  <Trophy className="w-5 h-5" />
+                  <span className="font-semibold">Achievements</span>
+                </div>
+              </Button>
+            </div>
           </div>
-        </button>
+          
+          {/* Content Section */}
+          <div className="text-center lg:text-left space-y-6">
+            <div>
+              <p className="text-2xl md:text-3xl text-slate-300 font-light mb-2">
+                Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 font-bold text-3xl md:text-5xl">Ritesh Solke</span>
+              </p>
+            </div>
+            
+            <p className="text-xl md:text-2xl text-slate-200 font-medium">
+              | Full Stack Developer | DevOps Engineer |
+            </p>
+            
+            <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+              {['MERN Stack', 'FARM Stack', 'DevOps Engineer', 'AI Enthusiast'].map((tag, index) => (
+                <span
+                  key={tag}
+                  className="px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700/50 text-slate-300 text-sm backdrop-blur-sm hover:bg-slate-700/50 hover:border-blue-500/50 transition-all duration-300 cursor-default"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            
+            {/* Info cards */}
+            <div className="grid md:grid-cols-3 gap-4 mt-6">
+              <div className="backdrop-blur-sm bg-slate-800/30 rounded-xl p-4 border border-slate-700/30 hover:bg-slate-800/40 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-1">
+                  <MapPin className="w-5 h-5 text-red-400" />
+                  <p className="text-sm text-slate-400 font-medium">Location</p>
+                </div>
+                <p className="text-slate-200">Pune, Maharashtra, India</p>
+              </div>
+              
+              <div className="backdrop-blur-sm bg-slate-800/30 rounded-xl p-4 border border-slate-700/30 hover:bg-slate-800/40 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-1">
+                  <Award className="w-5 h-5 text-purple-400" />
+                  <p className="text-sm text-slate-400 font-medium">Expertise</p>
+                </div>
+                <p className="text-slate-200">Full-Stack Development</p>
+              </div>
+              
+              <div className="backdrop-blur-sm bg-slate-800/30 rounded-xl p-4 border border-slate-700/30 hover:bg-slate-800/40 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-1">
+                  <MailIcon className="w-5 h-5 text-blue-400" />
+                  <p className="text-sm text-slate-400 font-medium">Contact</p>
+                </div>
+                <p className="text-slate-200 text-sm break-all">riteshsolke12@gmail.com</p>
+              </div>
+            </div>
+            
+            {/* Social Links */}
+            <div className="mt-8">
+              <h3 className="text-xl text-slate-300 font-semibold mb-4">Connect</h3>
+              <div className="flex items-center justify-center lg:justify-start gap-4">
+                {[
+                  { 
+                    icon: Github, 
+                    href: 'https://github.com/riteshsolke2004', 
+                    label: 'GitHub',
+                    hoverColor: 'hover:bg-gray-700/30 hover:border-gray-500',
+                    iconHoverColor: 'group-hover:text-gray-100',
+                    glowColor: 'group-hover:shadow-gray-500/20'
+                  },
+                  { 
+                    icon: Linkedin, 
+                    href: 'https://www.linkedin.com/in/riteshsolke/', 
+                    label: 'LinkedIn',
+                    hoverColor: 'hover:bg-blue-600/30 hover:border-blue-500',
+                    iconHoverColor: 'group-hover:text-blue-400',
+                    glowColor: 'group-hover:shadow-blue-500/20'
+                  },
+                  { 
+                    icon: Mail, 
+                    href: 'mailto:riteshsolke12@gmail.com', 
+                    label: 'Email',
+                    hoverColor: 'hover:bg-red-600/30 hover:border-red-500',
+                    iconHoverColor: 'group-hover:text-red-400',
+                    glowColor: 'group-hover:shadow-red-500/20'
+                  },
+                  { 
+                    icon: Instagram, 
+                    href: 'https://instagram.com/_.ritesh._18', 
+                    label: 'Instagram',
+                    hoverColor: 'hover:bg-pink-600/30 hover:border-pink-500',
+                    iconHoverColor: 'group-hover:text-pink-400',
+                    glowColor: 'group-hover:shadow-pink-500/20'
+                  },
+                ].map(({ icon: Icon, href, label, hoverColor, iconHoverColor, glowColor }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={href.startsWith('http') ? '_blank' : '_self'}
+                    rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className={`group relative p-3 rounded-full backdrop-blur-sm bg-slate-800/30 border border-slate-700/50 ${hoverColor} transition-all duration-300 hover:scale-110 hover:-translate-y-1 shadow-lg ${glowColor}`}
+                  >
+                    <Icon className={`w-6 h-6 text-slate-300 ${iconHoverColor} transition-colors duration-300`} />
+                    <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-3 py-1 rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap font-medium">
+                      {label}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       
-      {/* Floating geometric shapes - positioned to avoid navbar */}
-      <div className="absolute top-1/3 left-10 w-4 h-4 border-2 border-blue-400/30 rotate-45 animate-spin" style={{ animationDuration: '8s' }} />
-      <div className="absolute top-2/3 right-20 w-6 h-6 border-2 border-purple-400/30 animate-pulse" />
-      <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-cyan-400/30 rounded-full animate-bounce" style={{ animationDelay: '1s' }} />
+      {/* Floating shapes */}
+      <div className="absolute top-1/3 left-10 w-4 h-4 border-2 border-blue-400/30 rotate-45 animate-spin z-[5]" style={{ animationDuration: '8s' }} />
+      <div className="absolute top-2/3 right-20 w-6 h-6 border-2 border-purple-400/30 animate-pulse z-[5]" />
+      <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-cyan-400/30 rounded-full animate-bounce z-[5]" style={{ animationDelay: '1s' }} />
     </section>
   );
 };

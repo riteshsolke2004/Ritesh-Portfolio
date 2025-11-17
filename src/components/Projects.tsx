@@ -163,7 +163,7 @@ export const Projects = () => {
         <div className={`mb-20 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <h3 className="text-2xl font-bold mb-8 text-foreground flex items-center">
             <Star className="w-6 h-6 mr-2 text-accent" />
-            Featured Projects
+            My Projects
           </h3>
           
           <div className="grid lg:grid-cols-3 gap-8">

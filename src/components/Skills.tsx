@@ -551,7 +551,7 @@ export const Skills = () => {
   }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="relative py-24 px-6">
+    <section id="skills" ref={sectionRef} className="relative py-24 bg-black px-6">
       <div className="container mx-auto max-w-6xl">
         <h2 
           ref={titleRef}

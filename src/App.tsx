@@ -9,6 +9,8 @@ import { About } from "./components/About";
 import { Contact } from "./components/Contact";
 import { Hero } from "./components/Hero";
 import { Footer } from "./components/Footer";
+import { Education } from "./components/Education";
+import { Achievements } from "./components/Achievements";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -24,6 +26,8 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/hero" element={<Hero />} />
           <Route path="/footer" element={<Footer/>} />
+          <Route path="/education" element={<Education/>} />
+          <Route path="/achievements" element={<Achievements/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
