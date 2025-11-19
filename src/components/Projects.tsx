@@ -50,6 +50,19 @@ export const Projects = () => {
       liveUrl: "https://ai-robo-club.vercel.app/",
       githubUrl: "https://github.com/riteshsolke2004/robo-reveal-hub"
     },
+
+    {
+      title: "Real Estate Market Intelligence Platform",
+      description: "An AI-powered full-stack web application that provides comprehensive real estate market analysis for Pune localities. Features interactive visualizations, AI-generated insights using Groq LLM, advanced data tables, and detailed market reports with data from 2020-2024.",
+      image: "https://media.istockphoto.com/id/2154752387/photo/real-estate-concept-business-home-insurance-and-real-estate-protection-real-estate-investment.jpg?s=612x612&w=0&k=20&c=r6Tmn31ZHHr-8ZuWfZaYIYdqM9nD4dMc6NfDXxwsZeo=",
+      tags: ["React", "TypeScript", "Django", "Python", "AI/ML", "Groq API", "TailwindCSS", "Recharts", "REST API", "Pandas"],
+      category: "Full Stack Developement & AI",
+      featured: true,
+      year: "2025",
+      status: "Live",
+      liveUrl: "https://real-estate-app-ks3a.vercel.app/",
+      githubUrl: "https://github.com/riteshsolke2004/REAL_ESTATE_APP"
+    },
         {
   title: "Student Advisor Portal",
   description: "An AI-powered career guidance platform featuring a personalized roadmap mentor, resume ATS evaluator, and student community forum. Designed to enhance career readiness through adaptive agent-based recommendations and seamless multi-tool integration on Google Cloud Platform (GCP).",
@@ -111,18 +124,7 @@ export const Projects = () => {
       liveUrl: "#",
       githubUrl: "https://github.com/riteshsolke2004/Health-Monitor"
     },
-    {
-      title: "Simple Linear Regression - Housing Price",
-      description: "A simple linear regression project built using Google Colab and Streamlit to predict housing prices based on square footage.",
-      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop&crop=center",
-      tags: ["Python", "Streamlit", "Colab", "Machine Learning"],
-      category: "Machine Learning",
-      featured: false,
-      year: "2023",
-      status: "Live",
-      liveUrl: "https://linear-regression-housing.streamlit.app/",
-      githubUrl: "https://github.com/riteshsolke2004/housing-price-predictor.git"
-    }
+    
   ];
 
   const categories = ['All', 'Web Development', 'Machine Learning', 'AI/ML', 'IoT'];
