@@ -222,13 +222,7 @@ export const Hero = () => {
                 <p className="text-slate-200">Full-Stack Development</p>
               </div>
               
-              <div className="backdrop-blur-sm bg-slate-800/30 rounded-xl p-4 border border-slate-700/30 hover:bg-slate-800/40 transition-all duration-300">
-                <div className="flex items-center gap-2 mb-1">
-                  <MailIcon className="w-5 h-5 text-blue-400" />
-                  <p className="text-sm text-slate-400 font-medium">Contact</p>
-                </div>
-                <p className="text-slate-200 text-sm break-all">riteshsolke12@gmail.com</p>
-              </div>
+              
             </div>
             
             {/* Social Links */}

@@ -13,6 +13,19 @@ export const Projects = () => {
 
   const projects = [
 
+    {
+  title: "Student Advisor Portal",
+  description: "An AI-powered career guidance platform featuring a personalized roadmap mentor, resume ATS evaluator, and student community forum. Designed to enhance career readiness through adaptive agent-based recommendations and seamless multi-tool integration on Google Cloud Platform (GCP).",
+  image: "https://jaro-website.s3.ap-south-1.amazonaws.com/2025/02/115c7288f953204c4639bba8875f4993.jpg",
+  tags: ["FastAPI", "React", "AI", "GCP", "NLP", "MongoDB"],
+  category: "AI & Web Development",
+  featured: true,
+  year: "2025",
+  status: "Live",
+  liveUrl: "https://student-advisor-portal.vercel.app/",
+  githubUrl: "https://github.com/riteshsolke2004/Student-Advisor-Portal"
+},
+
 {
   title: "FinZer – AI-Powered Personal Finance Coach",
   description: "A full-stack AI-driven personal finance platform that helps users manage expenses, analyze spending patterns, and receive smart investment insights. Built with React.js, Tailwind CSS, and FastAPI integrated with Python ML models for real-time, data-driven financial recommendations.",
@@ -63,18 +76,7 @@ export const Projects = () => {
       liveUrl: "https://real-estate-app-ks3a.vercel.app/",
       githubUrl: "https://github.com/riteshsolke2004/REAL_ESTATE_APP"
     },
-        {
-  title: "Student Advisor Portal",
-  description: "An AI-powered career guidance platform featuring a personalized roadmap mentor, resume ATS evaluator, and student community forum. Designed to enhance career readiness through adaptive agent-based recommendations and seamless multi-tool integration on Google Cloud Platform (GCP).",
-  image: "https://jaro-website.s3.ap-south-1.amazonaws.com/2025/02/115c7288f953204c4639bba8875f4993.jpg",
-  tags: ["FastAPI", "React", "AI", "GCP", "NLP", "MongoDB"],
-  category: "AI & Web Development",
-  featured: true,
-  year: "2025",
-  status: "Live",
-  liveUrl: "https://student-advisor-portal.vercel.app/",
-  githubUrl: "https://github.com/riteshsolke2004/Student-Advisor-Portal"
-}
+        
 ,
     {
       title: "AI-Powered Sentiment Analysis",
