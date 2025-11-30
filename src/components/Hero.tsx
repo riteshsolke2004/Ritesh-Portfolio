@@ -121,7 +121,8 @@ export const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-24 md:pt-20">
+
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full z-[1]"
