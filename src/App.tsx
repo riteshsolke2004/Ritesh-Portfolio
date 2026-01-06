@@ -12,7 +12,7 @@ import { Footer } from "./components/Footer";
 import { Education } from "./components/Education";
 import { Achievements } from "./components/Achievements";
 const queryClient = new QueryClient();
- 
+  
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
