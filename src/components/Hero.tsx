@@ -67,7 +67,7 @@ developer.sayHi();`;
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-24 md:pt-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-32 pb-16 lg:pt-20 lg:pb-0">
       
       {/* ── Original Background Maintained ── */}
       <div className="absolute inset-0 bg-black z-[2]" />
@@ -78,7 +78,7 @@ developer.sayHi();`;
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* ── Left Side: Profile & Actions ── */}
-          <div className="flex flex-col items-center lg:items-start order-2 lg:order-1">
+          <div className="flex flex-col items-center lg:items-start">
             
             {/* Profile Image with Glow */}
             <div className="relative group mb-10 mt-8 lg:mt-0">
@@ -88,6 +88,9 @@ developer.sayHi();`;
                   src={profileImage}
                   alt="Ritesh Solke"
                   className="w-full h-full object-cover"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
               {/* Decorative planets orbiting profile */}
@@ -128,7 +131,7 @@ developer.sayHi();`;
           </div>
 
           {/* ── Right Side: Live Code Editor (Idea 2) ── */}
-          <div className="order-1 lg:order-2 w-full perspective-1000">
+          <div className="w-full max-w-full perspective-1000 min-w-0 mt-8 lg:mt-0">
             <div className="relative rounded-2xl overflow-hidden border border-slate-700/50 bg-[#1e1e2e] shadow-2xl transform transition-transform duration-500 hover:rotate-y-2 hover:rotate-x-2"
                  style={{ boxShadow: '0 25px 50px -12px rgba(139, 92, 246, 0.25)' }}>
               
@@ -151,15 +154,15 @@ developer.sayHi();`;
               {/* Editor Content Area */}
               <div className="flex">
                 {/* Line Numbers */}
-                <div className="py-4 px-4 text-right text-slate-500 text-sm font-mono select-none bg-[#181825]/50 border-r border-slate-700/30">
+                <div className="py-4 px-2 md:px-4 text-right text-slate-500 text-xs md:text-sm font-mono select-none bg-[#181825]/50 border-r border-slate-700/30">
                   {fullCode.split('\n').map((_, i) => (
                     <div key={i} className="leading-relaxed opacity-50">{i + 1}</div>
                   ))}
                 </div>
 
                 {/* Typed Code */}
-                <div className="p-4 w-full overflow-x-auto">
-                  <pre className="text-sm font-mono leading-relaxed text-slate-300 whitespace-pre">
+                <div className="p-4 w-full overflow-x-auto min-w-0">
+                  <pre className="text-xs md:text-sm font-mono leading-[1.6] md:leading-relaxed text-slate-300 whitespace-pre">
                     <code dangerouslySetInnerHTML={highlightCode(codeText)} />
                     <span 
                       className="inline-block w-2 h-4 ml-1 bg-blue-400 align-middle"

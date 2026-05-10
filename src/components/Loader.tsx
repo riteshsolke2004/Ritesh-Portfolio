@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { Terminal } from 'lucide-react';
+import { getLenis } from './SmoothScroll';
 
 interface LoaderProps {
   onComplete: () => void;
@@ -27,6 +28,14 @@ export const Loader = ({ onComplete }: LoaderProps) => {
   const [booting, setBooting] = useState(true);
 
   useEffect(() => {
+    // Lock scroll to prevent scrolling behind the loader
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    
+    // Stop Lenis smooth scroll engine
+    const lenis = getLenis();
+    if (lenis) lenis.stop();
+
     // 1. Line by line boot sequence (Slower)
     let i = 0;
     const interval = setInterval(() => {
@@ -67,13 +76,12 @@ export const Loader = ({ onComplete }: LoaderProps) => {
 
     tl.to({}, { duration: 0.7 }); // hold access granted
 
-    // 4. Zoom past camera effect
+    // 4. Smooth scale and fade out (GPU friendly to prevent lag)
     tl.to(containerRef.current, {
-      scale: 15,
+      scale: 1.5,
       opacity: 0,
-      filter: "blur(20px)",
-      duration: 1.2,
-      ease: "power4.in",
+      duration: 0.8,
+      ease: "power3.inOut",
     });
 
     tl.to(wrapperRef.current, {
@@ -81,11 +89,21 @@ export const Loader = ({ onComplete }: LoaderProps) => {
       duration: 0.4,
       ease: "power2.inOut",
       onComplete: () => {
+        window.scrollTo(0, 0);
         onComplete();
       }
     }, "-=0.4");
 
     return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      
+      const lenis = getLenis();
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+        lenis.start();
+      }
+
       clearInterval(interval);
       tl.kill();
     };

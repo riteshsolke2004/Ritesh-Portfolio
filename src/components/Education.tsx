@@ -13,7 +13,7 @@ export const Education = () => {
       institution: "JSPMS JAYAWANTRAO SAWANT COLLEGE OF ENGINEERING",
       location: "Pune, Maharashtra, India",
       duration: "2023 - 2027",
-      grade: "9.5 CGPA",
+      grade: "9.1 CGPA",
       description: "Specialized in Full-Stack Development, Cloud Computing, and DevOps practices. Active member of coding clubs and led multiple technical projects.",
       achievements: [
         "Technical Lead of AI ROBOTICS CLUB",
