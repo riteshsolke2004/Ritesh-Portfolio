@@ -163,7 +163,7 @@ export const About = () => {
               <div className="flex flex-col items-center">
                 <div className="relative mb-6">
                   <div className="w-40 h-40 rounded-3xl overflow-hidden border-2 border-slate-700/50 transform group-hover:scale-105 transition-transform duration-500 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
-                    <img src="/profile-picture.jpg" alt="Ritesh Solke" className="w-full h-full object-cover" />
+                    <img src="/Ritesh Photo profile.jpeg" alt="Ritesh Solke" className="w-full h-full object-cover" />
                   </div>
                   {/* Status Indicator */}
                   <div className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center">

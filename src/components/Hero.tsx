@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Terminal, Code2, Play } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
-import profileImage from '../../public/profile-picture.jpg';
+import profileImage from '../../public/Ritesh Photo profile.jpeg';
 import { gsap } from 'gsap';
 
 export const Hero = () => {
