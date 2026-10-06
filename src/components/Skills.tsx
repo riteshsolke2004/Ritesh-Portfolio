@@ -177,10 +177,23 @@ export const Skills = () => {
 
   return (
     <section id="skills" ref={sectionRef} className="relative pt-16 pb-24 bg-black px-4 overflow-hidden">
-      {/* Ambient */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* ── Background & Unique Celestial Polar Radar Rings ── */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+        {/* Polar Radar Range Rings & Crosshairs */}
+        <div className="relative w-[850px] h-[850px] opacity-[0.08] pointer-events-none">
+          <div className="absolute inset-0 rounded-full border border-white" />
+          <div className="absolute inset-16 rounded-full border border-dashed border-white" />
+          <div className="absolute inset-32 rounded-full border border-white" />
+          <div className="absolute inset-48 rounded-full border border-dashed border-white" />
+          <div className="absolute inset-64 rounded-full border border-white" />
+          {/* Main crosshair axes */}
+          <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-white -translate-x-1/2" />
+          <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-white -translate-y-1/2" />
+        </div>
+
+        {/* Ambient glow orbs */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-          style={{ width: 700, height: 700, background: 'radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)' }} />
+          style={{ width: 800, height: 800, background: 'radial-gradient(circle, rgba(59,130,246,0.14) 0%, rgba(168,85,247,0.08) 45%, transparent 70%)' }} />
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">

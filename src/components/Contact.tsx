@@ -193,10 +193,18 @@ export const Contact = () => {
     <section id="contact" ref={sectionRef}
       className="relative py-20 px-4 bg-black overflow-hidden">
 
-      {/* Ambient */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full"
-          style={{ background:'radial-gradient(ellipse,rgba(139,92,246,0.06) 0%,transparent 70%)', filter:'blur(60px)' }} />
+      {/* ── Background & Unique Cyber Circuit Trace Grid ── */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Digital Circuit Board Traces */}
+        <div 
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20h30l10 10h40M0 60h50l10-10h20M20 0v30M60 50v30' stroke='%23ffffff' stroke-width='1' fill='none'/%3E%3Ccircle cx='30' cy='20' r='2' fill='%23ffffff'/%3E%3Ccircle cx='50' cy='60' r='2' fill='%23ffffff'/%3E%3C/svg%3E")`,
+            backgroundSize: '80px 80px'
+          }}
+        />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[450px] rounded-full"
+          style={{ background:'radial-gradient(ellipse,rgba(139,92,246,0.14) 0%,rgba(59,130,246,0.08) 50%,transparent 70%)', filter:'blur(80px)' }} />
       </div>
 
       <div className="container mx-auto max-w-4xl relative z-10">

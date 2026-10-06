@@ -141,10 +141,18 @@ export const About = () => {
   return (
     <section id="about" className="relative py-32 px-6 overflow-hidden bg-black">
       
-      {/* Background Ambience */}
+      {/* Background Ambience & Unique Dot Matrix Pattern */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[20%] left-[10%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]" />
+        {/* High-Tech Data Dot Matrix Grid */}
+        <div 
+          className="absolute inset-0 opacity-[0.10]" 
+          style={{ 
+            backgroundImage: 'radial-gradient(circle, #ffffff 1.5px, transparent 1.5px)', 
+            backgroundSize: '32px 32px' 
+          }} 
+        />
+        <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[130px]" />
+        <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[130px]" />
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10" ref={containerRef}>
@@ -163,7 +171,11 @@ export const About = () => {
               <div className="flex flex-col items-center">
                 <div className="relative mb-6">
                   <div className="w-40 h-40 rounded-3xl overflow-hidden border-2 border-slate-700/50 transform group-hover:scale-105 transition-transform duration-500 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
-                    <img src="/Ritesh Photo profile.jpeg" alt="Ritesh Solke" className="w-full h-full object-cover" />
+                    <img 
+                      src="/Ritesh Photo profile.jpeg" 
+                      alt="Ritesh Solke" 
+                      className="w-full h-full object-cover object-[center_18%]" 
+                    />
                   </div>
                   {/* Status Indicator */}
                   <div className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center">

@@ -177,8 +177,23 @@ export const Projects = () => {
   }, { scope: sectionRef });
 
   return (
-    <section id="projects" ref={sectionRef} className="relative py-24 px-6 bg-background">
-      <div className="container mx-auto max-w-7xl">
+    <section id="projects" ref={sectionRef} className="relative py-24 px-6 bg-background overflow-hidden">
+      {/* ── Background & Unique Isometric Diamond Blueprint Grid ── */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Isometric Diamond Drafting Grid */}
+        <div 
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' stroke='%23ffffff' stroke-width='1' fill='none'/%3E%3C/svg%3E")`,
+            backgroundSize: '60px 60px'
+          }}
+        />
+        {/* Soft glowing ambient orbs */}
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-cyan-600/15 rounded-full blur-[140px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[140px]" />
+      </div>
+
+      <div className="container mx-auto max-w-7xl relative z-10">
 
         {/* Header */}
         <div className="text-center mb-16">

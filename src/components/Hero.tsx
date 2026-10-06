@@ -69,10 +69,24 @@ developer.sayHi();`;
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-32 pb-16 lg:pt-20 lg:pb-0">
       
-      {/* ── Original Background Maintained ── */}
-      <div className="absolute inset-0 bg-black z-[2]" />
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-950/5 via-purple-950/5 to-cyan-950/5 z-[3]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/20 to-black z-[4]" />
+      {/* ── Background & Unique Precision Crosshair Coordinate Grid ── */}
+      <div className="absolute inset-0 bg-black z-[1]" />
+      
+      {/* Ambient Glow Orbs */}
+      <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[130px] z-[2] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[130px] z-[2] pointer-events-none" />
+
+      {/* Unique Crosshair Coordinate Grid Pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.09] z-[3] pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40h80M40 0v80' stroke='%23ffffff' stroke-width='0.5' fill='none'/%3E%3Cpath d='M35 40h10M40 35v10' stroke='%23ffffff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E")`,
+          backgroundSize: '80px 80px'
+        }}
+      />
+
+      {/* Subtle Soft Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_45%,rgba(0,0,0,0.6)_100%)] z-[4] pointer-events-none" />
 
       <div className="relative z-[10] px-6 max-w-7xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -87,7 +101,7 @@ developer.sayHi();`;
                 <img
                   src={profileImage}
                   alt="Ritesh Solke"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-[center_18%]"
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
