@@ -364,17 +364,7 @@ export const Contact = () => {
                     <p className="text-[11px] text-slate-400 mt-0.5">Open to Remote & Hybrid Roles</p>
                   </div>
 
-                  {/* Availability Badge */}
-                  <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-3">
-                    <span className="relative flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                    </span>
-                    <div>
-                      <p className="text-xs font-semibold text-emerald-300">Available For Hire</p>
-                      <p className="text-[11px] text-slate-400">Full Stack & DevOps Engineering</p>
-                    </div>
-                  </div>
+
                 </div>
 
                 {/* Social pill links */}
