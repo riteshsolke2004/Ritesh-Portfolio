@@ -48,16 +48,26 @@ developer.sayHi();`;
     return () => clearInterval(cursorInterval);
   }, []);
 
-  // Syntax highlighting logic
+  // Collision-safe syntax highlighting logic
   const highlightCode = (code: string) => {
-    let html = code
-      .replace(/const|function/g, '<span style="color: #c678dd">$&</span>')
-      .replace(/developer/g, '<span style="color: #e5c07b">developer</span>')
-      .replace(/name:|roles:|location:|skills:|passion:|isAvailableForHire:|sayHi:/g, match => `<span style="color: #e06c75">${match}</span>`)
-      .replace(/"(.*?)"/g, '<span style="color: #98c379">"$1"</span>')
-      .replace(/true/g, '<span style="color: #d19a66">true</span>')
+    const strings: string[] = [];
+    let html = code.replace(/"([^"\\]*(\\.[^"\\]*)*)"/g, (match) => {
+      strings.push(match);
+      return `__STR_${strings.length - 1}__`;
+    });
+
+    html = html
+      .replace(/\b(const|function)\b/g, '<span style="color: #c678dd">$1</span>')
+      .replace(/\bdeveloper\b/g, '<span style="color: #e5c07b">developer</span>')
+      .replace(/\b(name|roles|location|skills|passion|isAvailableForHire|sayHi)(?=:)/g, '<span style="color: #e06c75">$1</span>')
+      .replace(/\btrue\b/g, '<span style="color: #d19a66">true</span>')
       .replace(/console\.log/g, '<span style="color: #56b6c2">console.log</span>')
-      .replace(/\{|\}|\[|\]|\(|\)/g, match => `<span style="color: #abb2bf">${match}</span>`);
+      .replace(/[{}\[\]()]/g, '<span style="color: #abb2bf">$&</span>');
+
+    html = html.replace(/__STR_(\d+)__/g, (_, idx) => {
+      return `<span style="color: #98c379">${strings[Number(idx)]}</span>`;
+    });
+
     return { __html: html };
   };
 

@@ -87,8 +87,13 @@ const Planet = ({
   const iconSz = sz * 0.55;
 
   return (
-    <div ref={ref} onMouseEnter={enter} onMouseLeave={leave}
-      className="absolute top-1/2 left-1/2 cursor-pointer flex flex-col items-center gap-0.5"
+    <div 
+      ref={ref} 
+      onMouseEnter={enter} 
+      onMouseLeave={leave}
+      onClick={enter}
+      onTouchStart={enter}
+      className="absolute top-1/2 left-1/2 cursor-pointer flex flex-col items-center gap-0.5 select-none"
       style={{ willChange: 'transform' }}>
       <div className="rounded-full flex items-center justify-center transition-all duration-300"
         style={{
@@ -139,11 +144,11 @@ export const Skills = () => {
   const computeScale = useCallback(() => {
     if (!wrapRef.current) return;
     const available = wrapRef.current.clientWidth;
-    // Full orbit needs BASE_R[2]*2 + planet margin (~660px on desktop)
-    const needed = BASE_R[2] * 2 + 80;
+    // Total diameter needed is (BASE_R[2] + 48) * 2 = 652px
+    const needed = (BASE_R[2] + 48) * 2;
     const maxScale = 1;
-    const minScale = 0.42;
-    const s = Math.min(maxScale, Math.max(minScale, available / needed));
+    const minScale = 0.40;
+    const s = Math.min(maxScale, Math.max(minScale, (available - 16) / needed));
     setScale(s);
   }, []);
 
@@ -329,14 +334,16 @@ export const Skills = () => {
                 </p>
                 <div ref={orbit.label === 'DevOps' ? legendRef : undefined} className="flex flex-wrap gap-2">
                   {orbit.skills.map(skill => (
-                    <div key={skill.name}
+                    <button key={skill.name}
+                      type="button"
+                      onClick={() => setHovered(skill)}
                       onMouseEnter={() => setHovered(skill)}
                       onMouseLeave={() => setHovered(null)}
-                      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold border cursor-default transition-all duration-200 hover:scale-105"
+                      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold border cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 select-none"
                       style={{ borderColor: skill.color + '50', color: skill.color, background: skill.color + '18' }}>
-                      <img src={skill.icon} alt={skill.name} className="w-5 h-5 object-contain" />
+                      <img src={skill.icon} alt={skill.name} className="w-5 h-5 object-contain pointer-events-none" />
                       {skill.name}
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>

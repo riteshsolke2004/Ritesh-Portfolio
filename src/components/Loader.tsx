@@ -28,6 +28,12 @@ export const Loader = ({ onComplete }: LoaderProps) => {
   const [booting, setBooting] = useState(true);
 
   useEffect(() => {
+    // If the visitor has already seen the boot sequence in this session, skip immediately
+    if (sessionStorage.getItem('ritesh_portfolio_visited')) {
+      onComplete();
+      return;
+    }
+
     // Lock scroll to prevent scrolling behind the loader
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
@@ -36,7 +42,7 @@ export const Loader = ({ onComplete }: LoaderProps) => {
     const lenis = getLenis();
     if (lenis) lenis.stop();
 
-    // 1. Line by line boot sequence (Slower)
+    // 1. Fast, punchy line-by-line boot sequence (140ms per line)
     let i = 0;
     const interval = setInterval(() => {
       setLinesVisible((prev) => {
@@ -46,16 +52,16 @@ export const Loader = ({ onComplete }: LoaderProps) => {
         }
         return next;
       });
-    }, 500); // Slower typing (500ms per line)
+    }, 140);
 
-    // 2. Progress bar and percentage
+    // 2. Progress bar and percentage (1.5s total)
     const tl = gsap.timeline();
 
     const progressObj = { val: 0 };
     tl.to(progressObj, {
       val: 100,
-      duration: 4.5, // Matches 9 lines * 500ms
-      ease: "power1.inOut",
+      duration: 1.5,
+      ease: "power2.inOut",
       onUpdate: () => {
         if (progressTextRef.current) {
           progressTextRef.current.innerText = `${Math.floor(progressObj.val)}%`;
@@ -65,38 +71,49 @@ export const Loader = ({ onComplete }: LoaderProps) => {
 
     tl.to(progressBarRef.current, {
       scaleX: 1,
-      duration: 4.5,
-      ease: "power1.inOut",
+      duration: 1.5,
+      ease: "power2.inOut",
     }, 0);
 
     // 3. When finished booting
-    tl.to({}, { duration: 0.3 }); // small pause
+    tl.to({}, { duration: 0.15 });
     
     tl.call(() => setBooting(false)); // Swap to "Access Granted"
 
-    tl.to({}, { duration: 0.7 }); // hold access granted
+    tl.to({}, { duration: 0.35 }); // hold access granted
 
-    // 4. Smooth scale and fade out (GPU friendly to prevent lag)
+    // 4. Smooth scale and fade out
     tl.to(containerRef.current, {
-      scale: 1.5,
+      scale: 1.3,
       opacity: 0,
-      duration: 0.8,
+      duration: 0.5,
       ease: "power3.inOut",
     });
 
     tl.to(wrapperRef.current, {
       opacity: 0,
-      duration: 0.4,
+      duration: 0.3,
       ease: "power2.inOut",
       onComplete: () => {
+        sessionStorage.setItem('ritesh_portfolio_visited', 'true');
         window.scrollTo(0, 0);
         onComplete();
       }
-    }, "-=0.4");
+    }, "-=0.3");
+
+    // Allow user to press ESC to skip instantly
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        sessionStorage.setItem('ritesh_portfolio_visited', 'true');
+        onComplete();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
       
       const lenis = getLenis();
       if (lenis) {
@@ -111,6 +128,17 @@ export const Loader = ({ onComplete }: LoaderProps) => {
 
   return (
     <div ref={wrapperRef} className="fixed inset-0 z-[999] flex items-center justify-center bg-black overflow-hidden font-mono selection:bg-green-500/30 p-4">
+      {/* Skip button for instant bypass */}
+      <button
+        onClick={() => {
+          sessionStorage.setItem('ritesh_portfolio_visited', 'true');
+          onComplete();
+        }}
+        className="absolute top-6 right-6 z-20 px-3.5 py-1.5 rounded-lg bg-slate-900/80 hover:bg-slate-800 border border-white/10 text-xs text-slate-400 hover:text-white transition-all font-mono"
+      >
+        Skip [ESC] ➔
+      </button>
+
       {/* Scanline overlay over the entire background */}
       <div className="absolute inset-0 pointer-events-none opacity-20"
         style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 92, 246, 0.1) 2px, rgba(139, 92, 246, 0.1) 4px)' }} />
